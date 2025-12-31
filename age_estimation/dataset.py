@@ -34,10 +34,6 @@ def age_to_group(age: int) -> int:
 
 class FaceAgeDataset(Dataset):
     """
-    Dataset for age group classification from face images.
-
-    Expected filename format:
-    <age>_<gender>_...jpg
     Example:
     23_0_0_20161219140623097.jpg.chip.jpg
     """
@@ -64,9 +60,6 @@ class FaceAgeDataset(Dataset):
 
     @staticmethod
     def _parse_age_from_filename(path: Path) -> int:
-        """
-        Extract age from filename.
-        """
         try:
             age_str = path.name.split("_")[0]
             return int(age_str)

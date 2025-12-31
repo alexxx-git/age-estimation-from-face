@@ -28,7 +28,6 @@ class FaceAgeDataModule(pl.LightningDataModule):
         self.val_split = val_split
         self.seed = seed
 
-        # трансформы, если не переданы
         if transform_train is None:
             self.transform_train = transforms.Compose(
                 [
@@ -56,9 +55,6 @@ class FaceAgeDataModule(pl.LightningDataModule):
         self.val_dataset: Optional[FaceAgeDataset] = None
 
     def setup(self, stage: Optional[str] = None):
-        """
-        Создает датасеты train/val. Вызывается автоматически Lightning.
-        """
         full_dataset = FaceAgeDataset(root_dir=self.data_dir, transform=self.transform_train)
         val_len = int(len(full_dataset) * self.val_split)
         train_len = len(full_dataset) - val_len
@@ -66,10 +62,9 @@ class FaceAgeDataModule(pl.LightningDataModule):
         self.train_dataset, self.val_dataset = random_split(
             full_dataset,
             lengths=[train_len, val_len],
-            generator=None,  # reproducibility можно добавить через torch.Generator().manual_seed(self.seed)
+            generator=None,
         )
 
-        # Для val_dataset используем transform_val
         self.val_dataset.dataset.transform = self.transform_val
 
     def train_dataloader(self):

@@ -16,3 +16,7 @@ __pycache__/
 # IDE
 .vscode/
 .idea/
+
+#DATA
+data/face_dataset/
+.env
