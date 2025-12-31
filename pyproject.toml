@@ -26,23 +26,59 @@ dev = [
 ]
 
 [tool.ruff]
-target-version = "py311"
-line-length = 88
+# ruff.toml
 
-select = [
-    "E",  # pycodestyle errors
-    "F",  # pyflakes
-    "W",  # warnings
-    "I",  # isort
-    "UP", # pyupgrade
-]
+line-length = 132
+indent-width = 4
 
-ignore = [
-    "E501", # line too long (formatter handles)
-]
+# Specify the file patterns to include in the analysis
+include = ["*.py"]
 
-exclude = [
-    ".venv",
-    "__pycache__",
-    ".ruff_cache",
+# Allow fix for all enabled rules (when `--fix`) is provided.
+lint.fixable = ["ALL"]
+
+# Specify which error/warning codes should be checked
+lint.select = [
+    "E",  # All errors
+    "W",  # All warnings
+    "PIE",  # All flake8-pie
+    "RET",  # All flake8-return
+    "PLE",  # All Errors from Pylint
+    "F401",  # unused-import
+    "F541",  # f-string-missing-placeholders
+    "F841",  # unused-variable
+    "I001",  # isort: unsorted-imports
+    "I002",  # isort: missing-required-import
+    ]
+lint.ignore = [  # Ruff cannot automatically fix these. Should be fixed manually before remove from below list.
+    "E266",  # multiple-leading-hashes-for-block-comment. We use this for headers.
+    "E402",  # module-import-not-at-top-of-file
+    "E501",  # line-too-long
+    "E712",  # true-false-comparison
+    "E701",  # multiple-statements-on-one-line-colon
+    "E711",  # none-comparison
+    "E721",  # type-comparison
+    "E722",  # bare-except
+    "E731",  # lambda-assignment
+    "E741",  # ambiguous-variable-name
+    ]
+
+# Optionally, you can disable automatic fixing for these specific rules or in general
+# fix = false
+
+# Assume Python 3.10
+target-version = "py310"
+
+[format]
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Configure isort settings within Ruff
+[lint.isort]
+force-single-line = false
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.10",
 ]
+# known-first-party = ["test_framework"]

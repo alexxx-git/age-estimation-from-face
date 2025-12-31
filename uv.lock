@@ -32,6 +32,11 @@ dev = [
     { name = "ruff" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "ruff" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "dvc", specifier = ">=3.40" },
@@ -49,6 +54,9 @@ requires-dist = [
     { name = "tqdm", specifier = ">=4.66" },
 ]
 provides-extras = ["dev"]
+
+[package.metadata.requires-dev]
+dev = [{ name = "ruff", specifier = ">=0.14.10" }]
 
 [[package]]
 name = "aiobotocore"
