@@ -17,6 +17,7 @@ dependencies = [
     "numpy>=1.26",
     "pillow>=10.0",
     "tqdm>=4.66",
+    "dvc-gdrive>=3.0.1",
 ]
 
 [project.optional-dependencies]
