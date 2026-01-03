@@ -18,6 +18,11 @@ dependencies = [
     "pillow>=10.0",
     "tqdm>=4.66",
     "dvc-gdrive>=3.0.1",
+    "python-dotenv>=1.2.1",
+    "kaggle>=1.7.4.5",
+    "minio>=7.2.20",
+    "boto3>=1.41.5",
+    "pre-commit>=4.5.1",
 ]
 
 [project.optional-dependencies]
